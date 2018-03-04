@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>Security-POC</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <error-page>
+    <error-code>400</error-code>
+    <location>/400-error-page.html</location>
+  </error-page>
+  <error-page>
+    <error-code>401</error-code>
+    <location>/401-error-page.html</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/403-error-page.html</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404-error-page.html</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/500-error-page.html</location>
+  </error-page>
+  <error-page>
+    <error-code>503</error-code>
+    <location>/503-error-page.html</location>
+  </error-page>
+  <login-config>
+    <auth-method>FORM</auth-method>
+  </login-config>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Protected Area</web-resource-name>
+      <url-pattern>/index.html</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Everyone</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Admin Area</web-resource-name>
+      <url-pattern>/indexadmin.html/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>afs.salesadmin</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Dealer Area</web-resource-name>
+      <url-pattern>/indexdealer.html/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>afs.distributor</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-role>
+    <description>POC Admin</description>
+    <role-name>afs.salesadmin</role-name>
+  </security-role>
+  <security-role>
+    <description>POC Developers</description>
+    <role-name>afs.distributor</role-name>
+  </security-role>
+  <security-role>
+    <description>All SAP Cloud Platform users</description>
+    <role-name>Everyone</role-name>
+  </security-role>
+</web-app>
